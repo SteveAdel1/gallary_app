@@ -1,6 +1,7 @@
 import 'package:app/features/home/view_model/get_gallery_cubit/get_galley_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/helpers/cache_helper.dart';
 import 'core/routes/routes.dart';
 
@@ -27,14 +28,18 @@ class MyApp extends StatelessWidget {
     // );
     return BlocProvider(
       create: (context) => GalleryCubit(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        onGenerateRoute: Routes.onGenerateRoutes,
+      child: ScreenUtilInit(designSize: Size(430, 932),
+        builder: (context,child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+              useMaterial3: true,
+            ),
+            onGenerateRoute: Routes.onGenerateRoutes,
+          );
+        }
       ),
     );
   }
